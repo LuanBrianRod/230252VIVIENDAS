@@ -1,421 +1,281 @@
 <!DOCTYPE html>
 <html lang="es" translate="no">
 <head>
-  <base target="_top">
-  <meta charset="UTF-8">
-  <meta name="google" content="notranslate">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<meta name="google" content="notranslate">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Elecciones Clientes 5078</title>
 
-  <style>
-    :root {
-      --azul: #0B5CAD;
-      --azul-suave: #EAF3FF;
-      --fondo: #F3F5F7;
-      --texto: #1F2937;
-      --gris: #6B7280;
-      --borde: #E5E7EB;
-      --amarillo: #FFF7D6;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: var(--fondo);
-      color: var(--texto);
-    }
-
-    .topbar {
-      background: var(--azul);
-      color: white;
-      padding: 18px 16px;
-      text-align: center;
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      box-shadow: 0 2px 8px rgba(0,0,0,.18);
-    }
-
-    .topbar h1 {
-      margin: 0;
-      font-size: 20px;
-    }
-
-    .topbar small {
-      display: block;
-      opacity: .9;
-      margin-top: 4px;
-      font-size: 13px;
-    }
-
-    .container {
-      max-width: 720px;
-      margin: auto;
-      padding: 16px;
-    }
-
-    .search {
-      width: 100%;
-      padding: 15px;
-      border-radius: 14px;
-      border: 1px solid var(--borde);
-      font-size: 16px;
-      margin-bottom: 14px;
-      box-shadow: 0 1px 5px rgba(0,0,0,.08);
-    }
-
-    .btn {
-      width: 100%;
-      border: 0;
-      background: white;
-      border-radius: 16px;
-      padding: 18px;
-      margin-bottom: 12px;
-      font-size: 17px;
-      text-align: left;
-      box-shadow: 0 2px 8px rgba(0,0,0,.10);
-      cursor: pointer;
-    }
-
-    .btn strong {
-      display: block;
-      font-size: 18px;
-      margin-bottom: 4px;
-    }
-
-    .btn span {
-      color: var(--gris);
-      font-size: 14px;
-    }
-
-    .btn:hover {
-      background: var(--azul-suave);
-    }
-
-    .volver {
-      background: var(--azul);
-      color: white;
-      text-align: center;
-      font-weight: bold;
-    }
-
-    .volver span {
-      color: white;
-    }
-
-    .card {
-      background: white;
-      border-radius: 18px;
-      padding: 18px;
-      box-shadow: 0 2px 10px rgba(0,0,0,.12);
-      margin-bottom: 16px;
-    }
-
-    .titulo-vivienda {
-      font-size: 26px;
-      font-weight: bold;
-      color: var(--azul);
-      margin-bottom: 6px;
-    }
-
-    .meta {
-      color: var(--gris);
-      font-size: 14px;
-      margin-bottom: 16px;
-      line-height: 1.5;
-    }
-
-    .chip {
-      display: inline-block;
-      background: var(--azul-suave);
-      color: var(--azul);
-      border-radius: 999px;
-      padding: 6px 10px;
-      font-size: 13px;
-      margin: 3px 3px 3px 0;
-      font-weight: bold;
-    }
-
-    .section-title {
-      margin-top: 18px;
-      margin-bottom: 8px;
-      font-size: 18px;
-      font-weight: bold;
-      border-bottom: 1px solid var(--borde);
-      padding-bottom: 8px;
-    }
-
-    .eleccion {
-      background: #F9FAFB;
-      border: 1px solid var(--borde);
-      border-left: 5px solid var(--azul);
-      padding: 14px;
-      border-radius: 14px;
-      margin-bottom: 10px;
-    }
-
-    .eleccion-grupo {
-      font-weight: bold;
-      font-size: 15px;
-      margin-bottom: 5px;
-      color: #111827;
-    }
-
-    .eleccion-opcion {
-      font-size: 16px;
-      color: var(--azul);
-      font-weight: bold;
-      margin-bottom: 5px;
-    }
-
-    .eleccion-desc {
-      font-size: 14px;
-      line-height: 1.45;
-      white-space: pre-line;
-    }
-
-    .obs {
-      background: var(--amarillo);
-      border-radius: 14px;
-      padding: 14px;
-      margin-top: 14px;
-      line-height: 1.45;
-    }
-
-    .pdf {
-      display: block;
-      background: var(--azul);
-      color: white;
-      text-decoration: none;
-      text-align: center;
-      border-radius: 14px;
-      padding: 14px;
-      margin-top: 14px;
-      font-weight: bold;
-    }
-
-    .empty {
-      text-align: center;
-      color: var(--gris);
-      padding: 30px 10px;
-    }
-  </style>
+<style>
+body{margin:0;font-family:Arial,sans-serif;background:#f3f5f7;color:#1f2937}
+.header{background:#0B5CAD;color:white;text-align:center;padding:18px;position:sticky;top:0;z-index:10}
+.header h1{margin:0;font-size:20px}
+.header small{opacity:.9}
+.container{max-width:720px;margin:auto;padding:16px}
+.search{width:100%;padding:15px;border-radius:14px;border:1px solid #ddd;font-size:16px;margin-bottom:14px}
+.btn{width:100%;background:white;border:0;border-radius:16px;padding:18px;margin-bottom:12px;text-align:left;font-size:17px;box-shadow:0 2px 8px #0002}
+.btn strong{display:block;font-size:18px}
+.btn span{color:#6b7280;font-size:14px}
+.volver{background:#0B5CAD;color:white;text-align:center;font-weight:bold}
+.card{background:white;border-radius:18px;padding:18px;box-shadow:0 2px 10px #0002}
+.titulo{font-size:26px;font-weight:bold;color:#0B5CAD}
+.meta{color:#6b7280;margin:8px 0 15px;line-height:1.4}
+.eleccion{background:#f9fafb;border:1px solid #e5e7eb;border-left:5px solid #0B5CAD;border-radius:14px;padding:14px;margin-bottom:10px}
+.grupo{font-weight:bold}
+.opcion{color:#0B5CAD;font-weight:bold;margin:5px 0}
+.obs{background:#fff7d6;border-radius:14px;padding:14px;margin-top:14px}
+.pdf{display:block;background:#0B5CAD;color:white;text-decoration:none;text-align:center;border-radius:14px;padding:14px;margin:14px 0;font-weight:bold}
+.empty{text-align:center;color:#6b7280;padding:30px}
+</style>
 </head>
 
 <body>
 
-  <div class="topbar">
-    <h1>Elecciones Clientes 5078</h1>
-    <small>Consulta rápida de acabados en obra</small>
-  </div>
+<div class="header">
+  <h1>Elecciones Clientes 5078</h1>
+  <small>Consulta de acabados en obra</small>
+</div>
 
-  <div class="container">
-    <input class="search" id="buscador" placeholder="Buscar vivienda, portal o planta...">
-    <div id="contenido">Cargando datos...</div>
-  </div>
+<div class="container">
+  <input class="search" id="buscador" placeholder="Buscar vivienda, portal o planta...">
+  <div id="contenido">Cargando datos...</div>
+</div>
 
 <script>
+const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRLWAFe3IqUv2jg6H-cTno5XYyNFHveHGsfRrmZHdrEgN52Yt1B-tSoGZzGN_RqZYeCXys0hv-sgDRF/pub?gid=1048525948&single=true&output=csv";
+
 let viviendas = [];
-let portalActual = '';
-let plantaActual = '';
+let portalActual = "";
+let plantaActual = "";
 
-google.script.run.withSuccessHandler(function(data) {
-  viviendas = data;
-  mostrarPortales();
-}).getViviendas();
-
-document.getElementById('buscador').addEventListener('input', function() {
-  const texto = this.value.toLowerCase().trim();
-
-  if (!texto) {
+fetch(CSV_URL)
+  .then(r => r.text())
+  .then(text => {
+    const data = parseCSV(text);
+    viviendas = procesarDatos(data);
     mostrarPortales();
-    return;
+  })
+  .catch(() => {
+    document.getElementById("contenido").innerHTML =
+      "<div class='empty'>Error cargando datos. Revisa que la hoja esté publicada como CSV.</div>";
+  });
+
+function parseCSV(text) {
+  const rows = [];
+  let row = [], value = "", insideQuotes = false;
+
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i];
+    const n = text[i + 1];
+
+    if (c === '"' && insideQuotes && n === '"') {
+      value += '"';
+      i++;
+    } else if (c === '"') {
+      insideQuotes = !insideQuotes;
+    } else if (c === "," && !insideQuotes) {
+      row.push(value);
+      value = "";
+    } else if ((c === "\n" || c === "\r") && !insideQuotes) {
+      if (value || row.length) {
+        row.push(value);
+        rows.push(row);
+        row = [];
+        value = "";
+      }
+      if (c === "\r" && n === "\n") i++;
+    } else {
+      value += c;
+    }
   }
 
-  const filtradas = viviendas.filter(v =>
-    normalizar(v.vivienda).includes(texto) ||
-    normalizar(v.portal).includes(texto) ||
-    normalizar(v.planta).includes(texto)
+  if (value || row.length) {
+    row.push(value);
+    rows.push(row);
+  }
+
+  return rows;
+}
+
+function rellenar(fila) {
+  let actual = "";
+  return fila.map(c => {
+    if (String(c || "").trim()) actual = String(c).trim();
+    return actual;
+  });
+}
+
+function procesarDatos(data) {
+  const filaGrupo = rellenar(data[4] || []);
+  const filaSubgrupo = rellenar(data[5] || []);
+  const filaOpcion = data[6] || [];
+  const filaDescripcion = data[7] || [];
+
+  let portal = "";
+  let planta = "";
+  let lista = [];
+
+  data.forEach(row => {
+    const texto = String(row[2] || "").trim();
+    if (!texto) return;
+
+    if (texto.toUpperCase().includes("PORTAL")) {
+      portal = texto;
+      return;
+    }
+
+    if (texto.toUpperCase().includes("PLANTA")) {
+      planta = texto;
+      return;
+    }
+
+    if (
+      texto.includes("º") ||
+      texto.toUpperCase().includes("BAJOS") ||
+      texto.toUpperCase().includes("ÁTICO") ||
+      texto.toUpperCase().includes("ATICO")
+    ) {
+      let elecciones = [];
+
+      for (let c = 10; c < row.length; c++) {
+        if (String(row[c] || "").trim().toUpperCase() === "X") {
+          elecciones.push({
+            grupo: filaGrupo[c] || "",
+            subgrupo: filaSubgrupo[c] || "",
+            opcion: filaOpcion[c] || "",
+            descripcion: filaDescripcion[c] || ""
+          });
+        }
+      }
+
+      lista.push({
+        portal,
+        planta,
+        vivienda: texto,
+        habitaciones: row[3] || "",
+        tipo: row[4] || "",
+        observaciones: row[49] || "",
+        planoPdf: row[50] || "",
+        elecciones
+      });
+    }
+  });
+
+  return lista;
+}
+
+document.getElementById("buscador").addEventListener("input", function() {
+  const txt = this.value.toLowerCase().trim();
+  if (!txt) return mostrarPortales();
+
+  const res = viviendas.filter(v =>
+    String(v.vivienda).toLowerCase().includes(txt) ||
+    String(v.portal).toLowerCase().includes(txt) ||
+    String(v.planta).toLowerCase().includes(txt)
   );
 
-  mostrarResultadosBusqueda(filtradas);
+  mostrarResultados(res);
 });
 
-function normalizar(valor) {
-  return String(valor || '').toLowerCase();
-}
-
-function limpiarTextoParaJS(texto) {
-  return String(texto || '').replace(/'/g, "\\'");
-}
-
 function mostrarPortales() {
-  document.getElementById('buscador').value = '';
-
-  const cont = document.getElementById('contenido');
-  cont.innerHTML = '';
+  document.getElementById("buscador").value = "";
+  const cont = document.getElementById("contenido");
+  cont.innerHTML = "";
 
   const portales = [...new Set(viviendas.map(v => v.portal).filter(Boolean))];
 
-  portales.forEach(portal => {
-    const total = viviendas.filter(v => v.portal === portal).length;
-
-    cont.innerHTML += `
-      <button class="btn" onclick="mostrarPlantas('${limpiarTextoParaJS(portal)}')">
-        <strong>🏢 ${portal}</strong>
-        <span>${total} viviendas</span>
-      </button>
-    `;
+  portales.forEach(p => {
+    const total = viviendas.filter(v => v.portal === p).length;
+    cont.innerHTML += `<button class="btn" onclick="mostrarPlantas('${esc(p)}')">
+      <strong>🏢 ${p}</strong><span>${total} viviendas</span>
+    </button>`;
   });
 }
 
 function mostrarPlantas(portal) {
   portalActual = portal;
+  const cont = document.getElementById("contenido");
+  cont.innerHTML = `<button class="btn volver" onclick="mostrarPortales()">← Volver a portales</button>`;
 
-  const cont = document.getElementById('contenido');
-  cont.innerHTML = `
-    <button class="btn volver" onclick="mostrarPortales()">← Volver a portales</button>
-  `;
+  const plantas = [...new Set(viviendas.filter(v => v.portal === portal).map(v => v.planta).filter(Boolean))];
 
-  const plantas = [...new Set(
-    viviendas
-      .filter(v => v.portal === portal)
-      .map(v => v.planta)
-      .filter(Boolean)
-  )];
-
-  plantas.forEach(planta => {
-    const total = viviendas.filter(v => v.portal === portal && v.planta === planta).length;
-
-    cont.innerHTML += `
-      <button class="btn" onclick="mostrarPisos('${limpiarTextoParaJS(planta)}')">
-        <strong>🧱 ${planta}</strong>
-        <span>${total} viviendas</span>
-      </button>
-    `;
+  plantas.forEach(p => {
+    const total = viviendas.filter(v => v.portal === portal && v.planta === p).length;
+    cont.innerHTML += `<button class="btn" onclick="mostrarPisos('${esc(p)}')">
+      <strong>🧱 ${p}</strong><span>${total} viviendas</span>
+    </button>`;
   });
 }
 
 function mostrarPisos(planta) {
   plantaActual = planta;
+  const cont = document.getElementById("contenido");
+  cont.innerHTML = `<button class="btn volver" onclick="mostrarPlantas('${esc(portalActual)}')">← Volver a plantas</button>`;
 
-  const cont = document.getElementById('contenido');
-  cont.innerHTML = `
-    <button class="btn volver" onclick="mostrarPlantas('${limpiarTextoParaJS(portalActual)}')">← Volver a plantas</button>
-  `;
-
-  const pisos = viviendas.filter(v =>
-    v.portal === portalActual &&
-    v.planta === plantaActual
-  );
-
-  pisos.forEach(v => {
-    cont.innerHTML += `
-      <button class="btn" onclick="mostrarFicha('${limpiarTextoParaJS(v.vivienda)}')">
-        <strong>🏠 ${v.vivienda}</strong>
-        <span>${v.portal} · ${v.planta}</span>
-      </button>
-    `;
+  viviendas.filter(v => v.portal === portalActual && v.planta === plantaActual).forEach(v => {
+    cont.innerHTML += `<button class="btn" onclick="mostrarFicha('${esc(v.vivienda)}')">
+      <strong>🏠 ${v.vivienda}</strong><span>${v.portal} · ${v.planta}</span>
+    </button>`;
   });
 }
 
-function mostrarResultadosBusqueda(lista) {
-  const cont = document.getElementById('contenido');
-  cont.innerHTML = '';
+function mostrarResultados(lista) {
+  const cont = document.getElementById("contenido");
+  cont.innerHTML = "";
 
-  if (lista.length === 0) {
-    cont.innerHTML = `<div class="empty">No se encontraron viviendas.</div>`;
+  if (!lista.length) {
+    cont.innerHTML = "<div class='empty'>No se encontraron viviendas.</div>";
     return;
   }
 
   lista.forEach(v => {
-    cont.innerHTML += `
-      <button class="btn" onclick="abrirDesdeBusqueda('${limpiarTextoParaJS(v.portal)}','${limpiarTextoParaJS(v.planta)}','${limpiarTextoParaJS(v.vivienda)}')">
-        <strong>🏠 ${v.vivienda}</strong>
-        <span>${v.portal} · ${v.planta}</span>
-      </button>
-    `;
+    cont.innerHTML += `<button class="btn" onclick="abrirBusqueda('${esc(v.portal)}','${esc(v.planta)}','${esc(v.vivienda)}')">
+      <strong>🏠 ${v.vivienda}</strong><span>${v.portal} · ${v.planta}</span>
+    </button>`;
   });
 }
 
-function abrirDesdeBusqueda(portal, planta, vivienda) {
+function abrirBusqueda(portal, planta, vivienda) {
   portalActual = portal;
   plantaActual = planta;
   mostrarFicha(vivienda);
 }
 
-function mostrarFicha(nombreVivienda) {
-  const v = viviendas.find(x =>
-    x.portal === portalActual &&
-    x.planta === plantaActual &&
-    x.vivienda === nombreVivienda
-  );
+function mostrarFicha(nombre) {
+  const v = viviendas.find(x => x.portal === portalActual && x.planta === plantaActual && x.vivienda === nombre);
+  const cont = document.getElementById("contenido");
 
-  const cont = document.getElementById('contenido');
-
-  let html = `
-    <button class="btn volver" onclick="mostrarPisos('${limpiarTextoParaJS(plantaActual)}')">← Volver a viviendas</button>
-
-    <div class="card">
-      <div class="titulo-vivienda">🏠 ${v.vivienda}</div>
-
-      <div class="meta">
-        ${v.portal} · ${v.planta}<br>
-        Habitaciones: ${v.habitaciones || '-'} · Tipo: ${v.tipo || '-'}
-      </div>
-
-      <div>
-        <span class="chip">Cliente</span>
-        <span class="chip">Acabados</span>
-        <span class="chip">Obra</span>
-      </div>
-  `;
+  let html = `<button class="btn volver" onclick="mostrarPisos('${esc(plantaActual)}')">← Volver a viviendas</button>
+  <div class="card">
+    <div class="titulo">🏠 ${v.vivienda}</div>
+    <div class="meta">${v.portal} · ${v.planta}<br>Habitaciones: ${v.habitaciones || "-"} · Tipo: ${v.tipo || "-"}</div>`;
 
   if (v.planoPdf) {
-    html += `
-      <a class="pdf" href="${v.planoPdf}" target="_blank">
-        📄 Abrir plano PDF
-      </a>
-    `;
+    html += `<a class="pdf" href="${v.planoPdf}" target="_blank">📄 Abrir plano PDF</a>`;
   }
 
   if (v.observaciones) {
-    html += `
-      <div class="obs">
-        <b>📝 Observaciones:</b><br>
-        ${v.observaciones}
-      </div>
-    `;
+    html += `<div class="obs"><b>📝 Observaciones:</b><br>${v.observaciones}</div>`;
   }
 
-  html += `<div class="section-title">Elecciones marcadas</div>`;
-
-  if (!v.elecciones || v.elecciones.length === 0) {
+  if (!v.elecciones.length) {
     html += `<div class="empty">⚠️ Sin elecciones marcadas.</div>`;
   } else {
     v.elecciones.forEach(e => {
-      html += `
-        <div class="eleccion">
-          <div class="eleccion-grupo">
-            ${e.grupo || ''} ${e.subgrupo || ''}
-          </div>
-          <div class="eleccion-opcion">
-            ${e.opcion || ''}
-          </div>
-          <div class="eleccion-desc">
-            ${e.descripcion || ''}
-          </div>
-        </div>
-      `;
+      html += `<div class="eleccion">
+        <div class="grupo">${e.grupo} ${e.subgrupo}</div>
+        <div class="opcion">${e.opcion}</div>
+        <div>${e.descripcion}</div>
+      </div>`;
     });
   }
 
-  html += `</div>`;
-
+  html += "</div>";
   cont.innerHTML = html;
+}
+
+function esc(t) {
+  return String(t || "").replace(/'/g, "\\'");
 }
 </script>
 
