@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="es" translate="no">
+<head>
+  <base target="_top">
+  <meta charset="UTF-8">
+  <meta name="google" content="notranslate">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    :root {
+      --azul: #0B5CAD;
+      --azul-suave: #EAF3FF;
+      --fondo: #F3F5F7;
+      --texto: #1F2937;
+      --gris: #6B7280;
+      --borde: #E5E7EB;
+      --amarillo: #FFF7D6;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: var(--fondo);
+      color: var(--texto);
+    }
+
+    .topbar {
+      background: var(--azul);
+      color: white;
+      padding: 18px 16px;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      box-shadow: 0 2px 8px rgba(0,0,0,.18);
+    }
+
+    .topbar h1 {
+      margin: 0;
+      font-size: 20px;
+    }
+
+    .topbar small {
+      display: block;
+      opacity: .9;
+      margin-top: 4px;
+      font-size: 13px;
+    }
+
+    .container {
+      max-width: 720px;
+      margin: auto;
+      padding: 16px;
+    }
+
+    .search {
+      width: 100%;
+      padding: 15px;
+      border-radius: 14px;
+      border: 1px solid var(--borde);
+      font-size: 16px;
+      margin-bottom: 14px;
+      box-shadow: 0 1px 5px rgba(0,0,0,.08);
+    }
+
+    .btn {
+      width: 100%;
+      border: 0;
+      background: white;
+      border-radius: 16px;
+      padding: 18px;
+      margin-bottom: 12px;
+      font-size: 17px;
+      text-align: left;
+      box-shadow: 0 2px 8px rgba(0,0,0,.10);
+      cursor: pointer;
+    }
+
+    .btn strong {
+      display: block;
+      font-size: 18px;
+      margin-bottom: 4px;
+    }
+
+    .btn span {
+      color: var(--gris);
+      font-size: 14px;
+    }
+
+    .btn:hover {
+      background: var(--azul-suave);
+    }
+
+    .volver {
+      background: var(--azul);
+      color: white;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .volver span {
+      color: white;
+    }
+
+    .card {
+      background: white;
+      border-radius: 18px;
+      padding: 18px;
+      box-shadow: 0 2px 10px rgba(0,0,0,.12);
+      margin-bottom: 16px;
+    }
+
+    .titulo-vivienda {
+      font-size: 26px;
+      font-weight: bold;
+      color: var(--azul);
+      margin-bottom: 6px;
+    }
+
+    .meta {
+      color: var(--gris);
+      font-size: 14px;
+      margin-bottom: 16px;
+      line-height: 1.5;
+    }
+
+    .chip {
+      display: inline-block;
+      background: var(--azul-suave);
+      color: var(--azul);
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 13px;
+      margin: 3px 3px 3px 0;
+      font-weight: bold;
+    }
+
+    .section-title {
+      margin-top: 18px;
+      margin-bottom: 8px;
+      font-size: 18px;
+      font-weight: bold;
+      border-bottom: 1px solid var(--borde);
+      padding-bottom: 8px;
+    }
+
+    .eleccion {
+      background: #F9FAFB;
+      border: 1px solid var(--borde);
+      border-left: 5px solid var(--azul);
+      padding: 14px;
+      border-radius: 14px;
+      margin-bottom: 10px;
+    }
+
+    .eleccion-grupo {
+      font-weight: bold;
+      font-size: 15px;
+      margin-bottom: 5px;
+      color: #111827;
+    }
+
+    .eleccion-opcion {
+      font-size: 16px;
+      color: var(--azul);
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .eleccion-desc {
+      font-size: 14px;
+      line-height: 1.45;
+      white-space: pre-line;
+    }
+
+    .obs {
+      background: var(--amarillo);
+      border-radius: 14px;
+      padding: 14px;
+      margin-top: 14px;
+      line-height: 1.45;
+    }
+
+    .pdf {
+      display: block;
+      background: var(--azul);
+      color: white;
+      text-decoration: none;
+      text-align: center;
+      border-radius: 14px;
+      padding: 14px;
+      margin-top: 14px;
+      font-weight: bold;
+    }
+
+    .empty {
+      text-align: center;
+      color: var(--gris);
+      padding: 30px 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="topbar">
+    <h1>Elecciones Clientes 5078</h1>
+    <small>Consulta rápida de acabados en obra</small>
+  </div>
+
+  <div class="container">
+    <input class="search" id="buscador" placeholder="Buscar vivienda, portal o planta...">
+    <div id="contenido">Cargando datos...</div>
+  </div>
+
+<script>
+let viviendas = [];
+let portalActual = '';
+let plantaActual = '';
+
+google.script.run.withSuccessHandler(function(data) {
+  viviendas = data;
+  mostrarPortales();
+}).getViviendas();
+
+document.getElementById('buscador').addEventListener('input', function() {
+  const texto = this.value.toLowerCase().trim();
+
+  if (!texto) {
+    mostrarPortales();
+    return;
+  }
+
+  const filtradas = viviendas.filter(v =>
+    normalizar(v.vivienda).includes(texto) ||
+    normalizar(v.portal).includes(texto) ||
+    normalizar(v.planta).includes(texto)
+  );
+
+  mostrarResultadosBusqueda(filtradas);
+});
+
+function normalizar(valor) {
+  return String(valor || '').toLowerCase();
+}
+
+function limpiarTextoParaJS(texto) {
+  return String(texto || '').replace(/'/g, "\\'");
+}
+
+function mostrarPortales() {
+  document.getElementById('buscador').value = '';
+
+  const cont = document.getElementById('contenido');
+  cont.innerHTML = '';
+
+  const portales = [...new Set(viviendas.map(v => v.portal).filter(Boolean))];
+
+  portales.forEach(portal => {
+    const total = viviendas.filter(v => v.portal === portal).length;
+
+    cont.innerHTML += `
+      <button class="btn" onclick="mostrarPlantas('${limpiarTextoParaJS(portal)}')">
+        <strong>🏢 ${portal}</strong>
+        <span>${total} viviendas</span>
+      </button>
+    `;
+  });
+}
+
+function mostrarPlantas(portal) {
+  portalActual = portal;
+
+  const cont = document.getElementById('contenido');
+  cont.innerHTML = `
+    <button class="btn volver" onclick="mostrarPortales()">← Volver a portales</button>
+  `;
+
+  const plantas = [...new Set(
+    viviendas
+      .filter(v => v.portal === portal)
+      .map(v => v.planta)
+      .filter(Boolean)
+  )];
+
+  plantas.forEach(planta => {
+    const total = viviendas.filter(v => v.portal === portal && v.planta === planta).length;
+
+    cont.innerHTML += `
+      <button class="btn" onclick="mostrarPisos('${limpiarTextoParaJS(planta)}')">
+        <strong>🧱 ${planta}</strong>
+        <span>${total} viviendas</span>
+      </button>
+    `;
+  });
+}
+
+function mostrarPisos(planta) {
+  plantaActual = planta;
+
+  const cont = document.getElementById('contenido');
+  cont.innerHTML = `
+    <button class="btn volver" onclick="mostrarPlantas('${limpiarTextoParaJS(portalActual)}')">← Volver a plantas</button>
+  `;
+
+  const pisos = viviendas.filter(v =>
+    v.portal === portalActual &&
+    v.planta === plantaActual
+  );
+
+  pisos.forEach(v => {
+    cont.innerHTML += `
+      <button class="btn" onclick="mostrarFicha('${limpiarTextoParaJS(v.vivienda)}')">
+        <strong>🏠 ${v.vivienda}</strong>
+        <span>${v.portal} · ${v.planta}</span>
+      </button>
+    `;
+  });
+}
+
+function mostrarResultadosBusqueda(lista) {
+  const cont = document.getElementById('contenido');
+  cont.innerHTML = '';
+
+  if (lista.length === 0) {
+    cont.innerHTML = `<div class="empty">No se encontraron viviendas.</div>`;
+    return;
+  }
+
+  lista.forEach(v => {
+    cont.innerHTML += `
+      <button class="btn" onclick="abrirDesdeBusqueda('${limpiarTextoParaJS(v.portal)}','${limpiarTextoParaJS(v.planta)}','${limpiarTextoParaJS(v.vivienda)}')">
+        <strong>🏠 ${v.vivienda}</strong>
+        <span>${v.portal} · ${v.planta}</span>
+      </button>
+    `;
+  });
+}
+
+function abrirDesdeBusqueda(portal, planta, vivienda) {
+  portalActual = portal;
+  plantaActual = planta;
+  mostrarFicha(vivienda);
+}
+
+function mostrarFicha(nombreVivienda) {
+  const v = viviendas.find(x =>
+    x.portal === portalActual &&
+    x.planta === plantaActual &&
+    x.vivienda === nombreVivienda
+  );
+
+  const cont = document.getElementById('contenido');
+
+  let html = `
+    <button class="btn volver" onclick="mostrarPisos('${limpiarTextoParaJS(plantaActual)}')">← Volver a viviendas</button>
+
+    <div class="card">
+      <div class="titulo-vivienda">🏠 ${v.vivienda}</div>
+
+      <div class="meta">
+        ${v.portal} · ${v.planta}<br>
+        Habitaciones: ${v.habitaciones || '-'} · Tipo: ${v.tipo || '-'}
+      </div>
+
+      <div>
+        <span class="chip">Cliente</span>
+        <span class="chip">Acabados</span>
+        <span class="chip">Obra</span>
+      </div>
+  `;
+
+  if (v.planoPdf) {
+    html += `
+      <a class="pdf" href="${v.planoPdf}" target="_blank">
+        📄 Abrir plano PDF
+      </a>
+    `;
+  }
+
+  if (v.observaciones) {
+    html += `
+      <div class="obs">
+        <b>📝 Observaciones:</b><br>
+        ${v.observaciones}
+      </div>
+    `;
+  }
+
+  html += `<div class="section-title">Elecciones marcadas</div>`;
+
+  if (!v.elecciones || v.elecciones.length === 0) {
+    html += `<div class="empty">⚠️ Sin elecciones marcadas.</div>`;
+  } else {
+    v.elecciones.forEach(e => {
+      html += `
+        <div class="eleccion">
+          <div class="eleccion-grupo">
+            ${e.grupo || ''} ${e.subgrupo || ''}
+          </div>
+          <div class="eleccion-opcion">
+            ${e.opcion || ''}
+          </div>
+          <div class="eleccion-desc">
+            ${e.descripcion || ''}
+          </div>
+        </div>
+      `;
+    });
+  }
+
+  html += `</div>`;
+
+  cont.innerHTML = html;
+}
+</script>
+
+</body>
+</html>
